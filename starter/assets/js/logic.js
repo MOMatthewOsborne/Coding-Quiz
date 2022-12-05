@@ -8,7 +8,9 @@ var answersDiv = document.getElementById("choices")
 var questionNumber = 0;
 var feedback = document.getElementById("feedback")
 var endscreen = document.getElementById("end-screen")
-
+var score = 0;
+var totalScore;
+var highScoresArray = JSON.parse(localStorage.getItem("highScores")) || [];
 
 
 // timer
@@ -32,56 +34,68 @@ function startQuiz() {
 
     quizTimer();
     startScreen.style.display = "none"
-    questionsDiv.removeAttribute("class", ".hide")
-    feedback.removeAttribute("class", ".hide")
+    questionsDiv.removeAttribute("class")
+    feedback.removeAttribute("class")
     // answersDiv.createElement("button")
     displayQuestion()
-
-
-
-    // for (i = 0; i < questions.length; i++) {
-    //     questionDisplay.textContent = questions[i].Question;
-
-    //     for (j = 0; j < 4; j++) {
-    //         var button = document.createElement('button')
-    //         answersDiv.appendChild(button);
-    //         button.innerText = questions[i].Answers[j]
-    //     }
-
-
-
-
-
-
-
-    // }
 }
 
 function displayQuestion() {
 
     var question = questions[questionNumber].Question;
     questionDisplay.textContent = question;
-    for (i = 0; i < 4; i++) {
+    answersDiv.innerHTML = " "
+    questions[questionNumber].Answers.forEach(answer => {
         var button = document.createElement('button')
+        button.textContent = answer;
+        button.setAttribute("value", answer)
+        button.addEventListener("click", function () {
+            if (this.value === questions[questionNumber].Correct) {
+                score++;
+            } else {
+                secsRemaining -= 10;
+            }
+            questionNumber++;
+            if (questionNumber === questions.length) {
+                endGame();
+            } else {
+                displayQuestion()
+            }
+
+        })
         answersDiv.appendChild(button);
-        button.innerText = questions[questionNumber].Answers[i]
-    }
+    });
 
 
 }
 
-function nextQuestion() {
-    questionsDiv.innerHTML = " ";
-    questionNumber++
-    if (questionNumber > questions.length) {
-        questionsDiv.setAttribute("class", ".hide")
-        feedback.setAttribute("class", ".hide")
-        endscreen.removeAttribute("class", ".hide")
-
-    } else {
-        displayQuestion()
-    }
+function endGame() {
+    questionsDiv.setAttribute("class", "hide")
+    endscreen.classList.remove("hide")
+    totalScore = score * secsRemaining;
+    document.getElementById("final-score").textContent = totalScore;
 }
+document.getElementById("submit").addEventListener("click", function () {
+    var initials = document.getElementById("initials").value
+    var scoreObj = { initials, totalScore };
+    console.log(scoreObj)
+    highScoresArray.push(scoreObj)
+    localStorage.setItem("highScores", JSON.stringify(highScoresArray))
+
+})
+
+// function nextQuestion() {
+//     questionsDiv.innerHTML = " ";
+//     questionNumber++
+//     if (questionNumber > questions.length) {
+//         questionsDiv.setAttribute("class", ".hide")
+//         feedback.setAttribute("class", ".hide")
+//         endscreen.removeAttribute("class", ".hide")
+
+//     } else {
+//         displayQuestion()
+//     }
+// }
 
 // function questionClick() {
 //     var element = button.addEventListener("click")
@@ -93,8 +107,7 @@ function nextQuestion() {
 //     }
 
 // }
-answersDiv.addEventListener("click", function questionClick(click) {
-    click.preventDefault();
 
 
-})
+
+
