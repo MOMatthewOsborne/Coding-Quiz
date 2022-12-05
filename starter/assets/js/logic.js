@@ -21,6 +21,7 @@ function quizTimer() {
         timeDisplay.textContent = secsRemaining + ' seconds remaining';
         if (secsRemaining === 0) {
             clearInterval(timer);
+            endGame()
         }
 
     }, 1000)
