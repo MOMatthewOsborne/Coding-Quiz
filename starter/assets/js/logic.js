@@ -13,6 +13,7 @@ var totalScore;
 var highScoresArray = JSON.parse(localStorage.getItem("highScores")) || [];
 
 
+
 // timer
 function quizTimer() {
     var timer = setInterval(function () {
@@ -52,8 +53,10 @@ function displayQuestion() {
         button.addEventListener("click", function () {
             if (this.value === questions[questionNumber].Correct) {
                 score++;
+                feedback.innerText = "Correct";
             } else {
                 secsRemaining -= 10;
+                feedback.innerText = "Incorrect";
             }
             questionNumber++;
             if (questionNumber === questions.length) {
@@ -71,6 +74,8 @@ function displayQuestion() {
 
 function endGame() {
     questionsDiv.setAttribute("class", "hide")
+    feedback.setAttribute("class", "hide")
+
     endscreen.classList.remove("hide")
     totalScore = score * secsRemaining;
     document.getElementById("final-score").textContent = totalScore;
@@ -84,29 +89,17 @@ document.getElementById("submit").addEventListener("click", function () {
 
 })
 
-// function nextQuestion() {
-//     questionsDiv.innerHTML = " ";
-//     questionNumber++
-//     if (questionNumber > questions.length) {
-//         questionsDiv.setAttribute("class", ".hide")
-//         feedback.setAttribute("class", ".hide")
-//         endscreen.removeAttribute("class", ".hide")
+function scoreTable() {
+    var scoreDiv = document.getElementById("highscores")
+    for (i = 0; i < highScoresArray.length; i++) {
+        var listScoreEntry = document.createElement("li");
 
-//     } else {
-//         displayQuestion()
-//     }
-// }
+        scoreDiv.appendChild(listScoreEntry);
+        listScoreEntry.textContent = highScoresArray[i];
 
-// function questionClick() {
-//     var element = button.addEventListener("click")
-//     var userAnswer = element.getAttribute("data")
-//     if (userAnswer === questions[questionNumber].Correct) {
-//         feedback.innerText = "Correct"
-//     } else {
-//         feedback.innerText = "Incorrect"
-//     }
-
-// }
+    }
+}
+scoreTable()
 
 
 
