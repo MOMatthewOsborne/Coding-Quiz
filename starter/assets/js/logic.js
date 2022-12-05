@@ -19,7 +19,7 @@ function quizTimer() {
     var timer = setInterval(function () {
         secsRemaining--;
         timeDisplay.textContent = secsRemaining + ' seconds remaining';
-        if (secsRemaining === 0) {
+        if (secsRemaining < 0) {
             clearInterval(timer);
             endGame()
         }
@@ -89,6 +89,7 @@ document.getElementById("submit").addEventListener("click", function () {
     console.log(scoreObj)
     highScoresArray.push(scoreObj)
     localStorage.setItem("highScores", JSON.stringify(highScoresArray))
+    window.location.href = "starter/highscores.html";
 
 })
 
