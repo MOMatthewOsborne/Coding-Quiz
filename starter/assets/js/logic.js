@@ -41,6 +41,7 @@ function startQuiz() {
     // answersDiv.createElement("button")
     displayQuestion()
 }
+// Displays questions. Gives feedback on whether corrct or incorrect. Ends game when questions are finished.
 
 function displayQuestion() {
 
@@ -72,6 +73,7 @@ function displayQuestion() {
 
 
 }
+// End game function Takes score and saves it along with initials. Creates object and saves to local storage as string.
 
 function endGame() {
     questionsDiv.setAttribute("class", "hide")
@@ -90,17 +92,7 @@ document.getElementById("submit").addEventListener("click", function () {
 
 })
 
-function scoreTable() {
-    var scoreDiv = document.getElementById("highscores")
-    for (i = 0; i < highScoresArray.length; i++) {
-        var listScoreEntry = document.createElement("li");
 
-        scoreDiv.appendChild(listScoreEntry);
-        listScoreEntry.textContent = highScoresArray[i];
-
-    }
-}
-scoreTable()
 
 
 

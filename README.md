@@ -5,7 +5,7 @@ You are taken to a page where you can push a button. This starts a series of que
 
 # Challenges
 
-This was a very challenging project. There were so many new concepts and moving parts. Each time I finished one thing, It seemed like five more tasks appeared. Recording and checking the correct answers was very challenging.  I had a difficult time getting buttons contaning the answers to generate on the page at first. My main difficulty was trying to get the high scores to appear on the high scores page. At the time of writing this, I have been unable to achieve this.
+This was a very challenging project. There were so many new concepts and moving parts. Each time I finished one thing, It seemed like five more tasks appeared. Recording and checking the correct answers was very challenging.  I had a difficult time getting buttons contaning the answers to generate on the page at first. My main difficulty was trying to get the high scores to appear on the high scores page. I succeeded in this and now the scores display with the highest at the top of the table.
 
 # What I learned
 
@@ -15,7 +15,7 @@ Here is a screenshot of the application.
 ![Web capture_23-11-2022_183118_](![Web capture_5-12-2022_18507_momatthewosborne github io](https://user-images.githubusercontent.com/109035827/205718609-7ade8634-f1f1-4f0b-b7b7-ddb62057304a.jpeg))
 
 
-Here is a link to the deployed application. [Link](hhttps://momatthewosborne.github.io/Coding-Quiz/)
+Here is a link to the deployed application. [Link](https://momatthewosborne.github.io/Coding-Quiz/)
 
 
 
